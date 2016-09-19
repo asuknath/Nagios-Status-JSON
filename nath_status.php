@@ -32,17 +32,6 @@ $url_nagios = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
 $url_nagios .=$_SERVER["SERVER_NAME"]. dirname($_SERVER["PHP_SELF"]); 
 $url_nagios = $url_nagios.'/';
 
-/*
-$ch = curl_init();     
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);  
-curl_setopt($ch, CURLOPT_URL, $url_nagios);  
-curl_setopt($ch, CURLOPT_USERPWD, $username.":".$password);  
-$result = curl_exec($ch); 
-$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);  
-*/
-
-
 	if($tag =="login"){	
 		$response = array("URL" => $url_nagios);
 		$response["Tag"] = $tag;
