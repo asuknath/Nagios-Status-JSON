@@ -24,42 +24,35 @@
 // |                                                                      |
 // +----------------------------------------------------------------------+
 // HTTP authentication 
-$username = $_GET["username"];
-$password = $_GET["password"];
+
 $tag = $_GET["tag"];
 
-$url_nagios = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";    
-$url_nagios .=$_SERVER["SERVER_NAME"]. dirname($_SERVER["PHP_SELF"]); 
-$url_nagios = $url_nagios.'/';
-
-	if($tag =="login"){	
-		$response = array("URL" => $url_nagios);
-		$response["Tag"] = $tag;
-        //$response["HTTP_Code"] = $httpcode;
-		$response["success"] = "1";
+if($tag =="login"){	
+	$response = array("URL" => $url_nagios);
+	$response["Tag"] = $tag;
+	$response["success"] = "1";
         echo json_encode($response);
-	}else{
-		// ****** Change Status.dat file's locaiton
-		$statusFile = '/usr/local/nagios/var/status.dat';
-		$nag_version = getFileVersion($statusFile);
-		$created_ts = 0;
-		$debug = false;
-		if ($nag_version == 4) {
-			$data = getData4($statusFile);
-		} else if ($nag_version == 3) {
-			$data = getData3($statusFile);
-		} else {
-			$data = getData2($statusFile);
-		}
-		$hosts = $data['hosts'];
-		$services = $data['services'];
-		$program = "";
-		if (array_key_exists("program", $data)) {
-			$program = $data['program'];
-		}
-		outputJson($hosts, $services, $program);
+}else{
+	// ****** Change Status.dat file's locaiton
+	$statusFile = '/usr/local/nagios/var/status.dat';
+	$nag_version = getFileVersion($statusFile);
+	$created_ts = 0;
+	$debug = false;
+	if ($nag_version == 4) {
+		$data = getData4($statusFile);
+	} else if ($nag_version == 3) {
+		$data = getData3($statusFile);
+	} else {
+		$data = getData2($statusFile);
 	}
-
+	$hosts = $data['hosts'];
+	$services = $data['services'];
+	$program = "";
+	if (array_key_exists("program", $data)) {
+		$program = $data['program'];
+	}
+	outputJson($hosts, $services, $program);
+}
 
 function outputJson($hosts, $services, $program){
     // begin outputting XML
@@ -115,7 +108,6 @@ function isLast($array, $key)
     end($array);
     return ($key === key($array));
 }
-
 
 // replace reserved characters in json
 function jsonString($s)
