@@ -6,7 +6,10 @@ This PHP API script reads Nagios status.dat file and return the JSON result. Thi
 # Step 1
 Upload **nath_status.php** to your Nagios web root folder.
 ###Nagios Core's default Web Root folder Web Root Folder - Centos & Ubuntu
-**/usr/local/nagios/share**
+**/usr/local/nagios/share/**
+
+###NagiosXI's default Web Root folder Web Root Folder - Centos & Ubuntu
+**/usr/local/nagiosxi/html/**
 
 # Step 2
 Edit **nath_status.php.** *You can use your favourite text editor*
@@ -31,6 +34,13 @@ Go to settings
 ![Settings](https://github.com/asuknath/Nagios-Status-JSON/blob/master/SettingPage.png)
 
 Update URL
+###Nagios Core
+**(http or https)://nagiosserver_address/nagios/**
+
+###NagiosXI
+**(http or https)://nagiosserver_address/nagiosxi/**
+
+
 
 ![URL Update](https://github.com/asuknath/Nagios-Status-JSON/blob/master/URLUpdatePage.png)
 
