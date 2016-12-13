@@ -5,6 +5,9 @@ This PHP API script reads Nagios status.dat file and return the JSON result. Thi
 
 # Step 1
 Upload **nath_status.php** to your Nagios web root folder.
+###Nagios Core's 3.5.1 default Web Root folder Web Root Folder - Centos
+**/usr/share/nagios/html/**
+
 ###Nagios Core's default Web Root folder Web Root Folder - Centos & Ubuntu
 **/usr/local/nagios/share/**
 
