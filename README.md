@@ -23,9 +23,12 @@ Change status.dat file's path according to your Nagios Server configuration.
 
 **$statusFile = '/usr/local/nagios/var/status.dat';**
 
+###Nagios Core's 3.5.1 status.dat file's location:
+**/var/log/nagios/status.dat**
+
 Use following command to find status.dat location.
 
-**find / -name status.dat**
+**find / -name status.dat** 
 
 # Step 3
 **Download and Configure Android Nagios Client**
