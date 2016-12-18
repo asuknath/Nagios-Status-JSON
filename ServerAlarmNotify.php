@@ -1,4 +1,4 @@
-#! /usr/local/bin/php
+#! /usr/bin/php
 
 <?php
 
@@ -45,61 +45,21 @@
  * @link       https://www.serveralarms.com
  * @author     Asuk Nath <support@serveralarms.com>
  */
-
-
 // USAGE: ServerAlarmNotify.php <HOST> <GROPU_KEY> <TYPE> <STATE>
 
 
-date_default_timezone_set('America/New_York');
-define( "VERSION", '1.0' );
+// $argv[1] - Host Name
+// $argv[2] - Group Name API Key
+// $argv[3] - Host or Service Name
+// $argv[4] - Hosst or Service Status
 
-ini_set( 'max_execution_time', '60' );
-
-ini_set( 'display_errors', true );
-ini_set( 'display_startup_errors', true );
-
-define( 'PRI_LOW',   -1 );
-define( 'PRI_NORMAL', 0 );
-define( 'PRI_HIGH',   1 );
-
-
-// get the message from STDIN
-$message = trim( fgets( STDIN ) );
-
-// get the parameters
-
-$hostorservice  = isset( $argv[1] ) ? $argv[1] : false;
-$groupname      = isset( $argv[2] ) ? $argv[2] : false;
-$type           = isset( $argv[3] ) ? $argv[4] : false;
-$state          = isset( $argv[4] ) ? $argv[5] : false;
-
-if( !$hostorservice || !$groupname || !$type || !$state )
-    die( "ERROR - USAGE: ServerAlarmNotify.php <HOST> <GROPU_KEY> <TYPE> <STATE>\n\n" );
-
-switch( $state )
-{
-    case 'WARNING':
-    case 'UNKNOWN':
-        $priority = PRI_LOW;
-        break;
-
-    case 'OK':
-        $priority = PRI_NORMAL;
-        break;
-
-   case 'CRITICAL':
-        $priority = PRI_HIGH;
-        break;
-
-    default:
-        $priority = PRI_NORMAL;
-        break;
-}
-
-$title = urlencode($hostorservice - $state);
-$message = urlencode($hostorservice - $type - $state);
+$title =   urlencode("**".$argv[4]."** ".$argv[1]);
+$message =  urlencode($argv[3]." - ".$argv[1]." is ".$argv[4]); 
 $URL = "https://serveralarms.com/fcm/api.php?tag=send&title=$title&groupname=$groupname&mess=$message";
+echo $URL;
 $data = file($URL);
+
+?>
 
 
 
