@@ -105,3 +105,5 @@ define contact{
 - **7** If your GROUP API KEY is not showing
   - Update URL 
   - Turn OFF and ON Notification.
+  
+For support contact support@serveralarms.com
