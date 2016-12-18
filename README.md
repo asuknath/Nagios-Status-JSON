@@ -50,6 +50,47 @@ Update URL
 
 ![URL Update](https://github.com/asuknath/Nagios-Status-JSON/blob/master/URLUpdatePage.png)
 
+#Step 5
+###Add IOS Push Notification and Android FCM Notification
 
+- 1 Download Script from following PHP Script File
+  - https://github.com/asuknath/Nagios-Status-JSON/blob/master/ServerAlarmNotify.php
+  
+- 2 Upload File to **Nagios's Plugin Folder**
+```javascript
+    /usr/local/nagios/libexec/
+```
+  
+- 3 Make **ServerAlarmNotify.php** file executable using following command.
+```javascript
+    chmod +x ServerAlarmNotify.php
+```
+  
+- 4 Edit **commands.cfg** and add following two commands
+```javascript
+# 'sm-host-push-notify' command definition
+define command{
+    command_name 	sm-host-push-notify
+    command_line 	/usr/local/nagios/libexec/ServerAlarmNotify.php $HOSTNAME$ YOURGROUPKEY $HOSTOUTPUT$ $HOSTSTATE$
+}
 
-
+# 'sm-service-push-notify' command definition
+define command{
+  	command_name 	sm-service-push-notify
+  	command_line  	/usr/local/nagios/libexec/ServerAlarmNotify.php $HOSTNAME$ YOURGROUPKEY  $SERVICEOUTPUT$ $SERVICESTATE$
+```
+#
+- 5 Edit **templates.cfg** file. Modify Contact Templates and add **sm-service-push-notify** as service notification command and **sm-host-push-notify** as host notification command.
+   -
+```javascript
+define contact{
+        name                            generic-contact
+        service_notification_period     24x7
+        host_notification_period        24x7
+        service_notification_options    c,r
+        host_notification_options       d,r
+        service_notification_commands   notify-service-by-email,sm-service-push-notify
+        host_notification_commands      notify-host-by-email,sm-host-push-notify
+        register                        0       					
+        }
+```
