@@ -53,34 +53,37 @@ Update URL
 #Step 5
 ###Add IOS Push Notification and Android FCM Notification
 
-- 1 Download Script from following PHP Script File
+- **1** Download Script from following PHP Script File
   - https://github.com/asuknath/Nagios-Status-JSON/blob/master/ServerAlarmNotify.php
   
-- 2 Upload File to **Nagios's Plugin Folder**
+- **2** Upload File to Nagios's Plugin Folder**
 ```javascript
     /usr/local/nagios/libexec/
 ```
   
-- 3 Make **ServerAlarmNotify.php** file executable using following command.
+- **3** Make **ServerAlarmNotify.php** file executable using following command.
 ```javascript
     chmod +x ServerAlarmNotify.php
 ```
   
-- 4 Edit **commands.cfg** and add following two commands
+- **4** Edit **commands.cfg** and add following two commands. You will find your under settings. Menu -> Setting.
+![Settings](https://github.com/asuknath/Nagios-Status-JSON/blob/master/settingsview.jpg)
 ```javascript
 # 'sm-host-push-notify' command definition
 define command{
     command_name 	sm-host-push-notify
-    command_line 	/usr/local/nagios/libexec/ServerAlarmNotify.php $HOSTNAME$ YOURGROUPKEY $HOSTOUTPUT$ $HOSTSTATE$
+    command_line 	/usr/local/nagios/libexec/ServerAlarmNotify.php $HOSTNAME$ YOURGROUPKEY HOST $HOSTSTATE$
 }
+
 
 # 'sm-service-push-notify' command definition
 define command{
   	command_name 	sm-service-push-notify
-  	command_line  	/usr/local/nagios/libexec/ServerAlarmNotify.php $HOSTNAME$ YOURGROUPKEY  $SERVICEOUTPUT$ $SERVICESTATE$
+	command_line  	/usr/local/nagios/libexec/ServerAlarmNotify.php $HOSTNAME$ YOURGROUPKEY SERVICE $SERVICESTATE$
+}
 ```
 #
-- 5 Edit **templates.cfg** file. Modify Contact Templates and add **sm-service-push-notify** as service notification command and **sm-host-push-notify** as host notification command.
+- **5** Edit **templates.cfg** file. Modify Contact Templates and add **sm-service-push-notify** as service notification command and **sm-host-push-notify** as host notification command.
    -
 ```javascript
 define contact{
@@ -94,3 +97,11 @@ define contact{
         register                        0       					
         }
 ```
+#
+- **6** Nagios Client Generates **GROUP API KEY** using Nagios URL
+  - All devices using same URL will get Notification simultaneously.  
+  - Every Android/IOS user has option to Turn off Notification for his device only.
+  
+- **7** If your GROUP API KEY is not showing
+  - Update URL 
+  - Turn OFF and ON Notification.
