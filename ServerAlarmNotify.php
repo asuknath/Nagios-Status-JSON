@@ -49,13 +49,13 @@
 
 
 // $argv[1] - Host Name
-// $argv[2] - Group Name API Key
+// $argv[2] - Group Name (Group API Key)
 // $argv[3] - Host or Service Name
 // $argv[4] - Hosst or Service Status
 
-$title =   urlencode("**".$argv[4]."** ".$argv[1]);
-$message =  urlencode($argv[3]." - ".$argv[1]." is ".$argv[4]); 
-$URL = "https://serveralarms.com/fcm/api.php?tag=send&title=$title&groupname=$groupname&mess=$message";
+$title =   urlencode("::".$argv[4].":: ".$argv[1]);
+$message =  urlencode($argv[3]." - ".$argv[1]." is ".$argv[4]);
+$URL = "https://serveralarms.com/fcm/api.php?tag=send&title=$title&groupname=$argv[2]&mess=$message";
 echo $URL;
 $data = file($URL);
 
