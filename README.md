@@ -31,7 +31,7 @@ Use following command to find status.dat location.
 **find / -name status.dat** 
 
 # Step 3
-**Download and Configure Android Nagios Client**
+**Download and Configure iPhone or Android Server Alarms Nagios Client**
 
 [Nagios Client](https://play.google.com/store/apps/details?id=com.serveralarms.nagios&hl=en)
 
