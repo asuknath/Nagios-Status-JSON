@@ -37,7 +37,7 @@ Use following command to find status.dat location.
 
 Go to settings
 
-![Settings](https://github.com/asuknath/Nagios-Status-JSON/blob/master/SettingPage.png)
+![Settings](https://github.com/asuknath/Nagios-Status-JSON/blob/master/SettingPage-A-I.png)
 
 Update URL
 ###Nagios Core
@@ -48,7 +48,7 @@ Update URL
 
 
 
-![URL Update](https://github.com/asuknath/Nagios-Status-JSON/blob/master/URLUpdatePage.png)
+![URL Update](https://github.com/asuknath/Nagios-Status-JSON/blob/master/URLUpdatePage-A-I.png)
 
 #Step 5
 ###Add IOS Push Notification and Android FCM Notification
@@ -67,7 +67,7 @@ Update URL
 ```
   
 - **4** Edit **commands.cfg** and add following two commands. You will find your under settings. Menu -> Setting.
-![Settings](https://github.com/asuknath/Nagios-Status-JSON/blob/master/settingsview.jpg)
+![Settings](https://github.com/asuknath/Nagios-Status-JSON/blob/master/settingsview-A-I.jpg)
 ```javascript
 # 'sm-host-push-notify' command definition
 define command{
